@@ -1,0 +1,19 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: <service-name>
+          uri: lb://<service-name>
+          predicates:
+            - Path=/<service>/**
+#          filters:
+#            - AuthenticationFilter
+  config:
+    import: optional:configserver:http://localhost:8082
+
+
